@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "307118944736",
+    "firebase_url": "https://e-commerce-14d7c-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "e-commerce-14d7c",
+    "storage_bucket": "e-commerce-14d7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307118944736:android:4eb8105a0d7c8d9d7ebb85",
+        "android_client_info": {
+          "package_name": "com.hacktiv8.joyshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307118944736-fqhpisb1qipirpidph82t5cd0mgnc5ek.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hacktiv8.joyshop",
+            "certificate_hash": "19f4c84fc9d71efcc78e756e218cabfd61bd92bf"
+          }
+        },
+        {
+          "client_id": "307118944736-26gih9bimcleepir1naro2u7pqgd6vf9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPHTf4DQC0kG_n7_t6KuieRmv18-50N38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307118944736-26gih9bimcleepir1naro2u7pqgd6vf9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
