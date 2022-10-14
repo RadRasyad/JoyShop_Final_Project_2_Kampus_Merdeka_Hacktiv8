@@ -1,4 +1,4 @@
-package com.hacktiv8.joyshop;
+package com.hacktiv8.joyshop.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
