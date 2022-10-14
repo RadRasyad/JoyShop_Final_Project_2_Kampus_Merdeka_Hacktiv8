@@ -2,6 +2,10 @@ package com.hacktiv8.joyshop.model;
 
 public class User {
 
+    public User() {
+
+    }
+
     public User(String uId, String username, String email, String phone, String role) {
         this.uId = uId;
         this.username = username;
