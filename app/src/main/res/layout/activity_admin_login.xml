@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="120dp"
         android:hint="@string/password"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"

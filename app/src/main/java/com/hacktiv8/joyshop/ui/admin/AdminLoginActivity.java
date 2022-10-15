@@ -20,10 +20,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hacktiv8.joyshop.databinding.ActivityAdminLoginBinding;
 import com.hacktiv8.joyshop.model.User;
+import com.hacktiv8.joyshop.preferences.UserPreference;
+import com.hacktiv8.joyshop.ui.MainActivity;
 
 public class AdminLoginActivity extends AppCompatActivity {
 
     private ActivityAdminLoginBinding binding;
+    private UserPreference preference;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
@@ -35,6 +38,7 @@ public class AdminLoginActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference("Users");
         mAuth = FirebaseAuth.getInstance();
+        preference = new UserPreference(this);
 
         binding.btnLogin.setOnClickListener(v -> {
             loginAdmin();
@@ -52,18 +56,20 @@ public class AdminLoginActivity extends AppCompatActivity {
 
                 if (isExist) {
                     User user = snapshot.getValue(User.class);
-                    Log.i("AdminLoginActivity", String.valueOf(user.getRole()));
                     if (user.getRole().equals("0")) {
-                        Log.i("AdminLoginActivity", user.getUsername());
-                        Log.i("AdminLoginActivity", user.getEmail());
                         mAuth.signInWithEmailAndPassword(user.getEmail(), password)
                                 .addOnCompleteListener(AdminLoginActivity.this, new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
-                                            Log.d("AdminLoginActivity", "signInWithEmail:success");
-                                            Intent intent = new Intent(AdminLoginActivity.this, AdminHomeActivity.class);
-                                            startActivity(intent);
+                                            User toSave = new User();
+                                            toSave.setuId(user.getuId());
+                                            toSave.setUsername(user.getUsername());
+                                            toSave.setEmail(user.getEmail());
+                                            toSave.setPhone(user.getPhone());
+                                            toSave.setRole(user.getRole());
+                                            saveUser(toSave);
+                                            reload();
                                         } else {
                                             Log.w("AdminLoginActivity", "signInWithEmail:failure", task.getException());
                                             Toast.makeText(AdminLoginActivity.this, "Password Salah",
@@ -86,6 +92,31 @@ public class AdminLoginActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            if (currentUser.getUid().equals(preference.getUserPref().getuId())) {
+                reload();
+            } else {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(AdminLoginActivity.this, "Session telah habis", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void reload() {
+        Intent intent = new Intent(AdminLoginActivity.this, AdminHomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    private void saveUser(User user) {
+        UserPreference userPreference = new UserPreference(AdminLoginActivity.this);
+        userPreference.setUserPref(user);
     }
 
 }

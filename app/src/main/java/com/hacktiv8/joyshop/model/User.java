@@ -1,6 +1,11 @@
 package com.hacktiv8.joyshop.model;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class User implements Parcelable {
 
     public User() {
 
@@ -40,4 +45,58 @@ public class User {
     public String getRole() {
         return role;
     }
+
+    public void setuId(String uId) {
+        this.uId = uId;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(uId);
+        dest.writeString(username);
+        dest.writeString(email);
+        dest.writeString(phone);
+        dest.writeString(role);
+    }
+
+    protected User(Parcel in) {
+        uId = in.readString();
+        username = in.readString();
+        email = in.readString();
+        phone = in.readString();
+        role = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }
