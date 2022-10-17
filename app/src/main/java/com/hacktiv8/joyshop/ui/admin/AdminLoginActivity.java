@@ -53,7 +53,6 @@ public class AdminLoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 boolean isExist = snapshot.exists();
-
                 if (isExist) {
                     User user = snapshot.getValue(User.class);
                     if (user.getRole().equals("0")) {
@@ -87,7 +86,6 @@ public class AdminLoginActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.w("AdminLoginActivity", "Database Failure", error.toException());
                 Toast.makeText(AdminLoginActivity.this, "Authentication failed.",
                         Toast.LENGTH_SHORT).show();
             }

@@ -39,6 +39,10 @@ public class AdminHomeActivity extends AppCompatActivity {
             finish();
         }
 
+        binding.btnStaff.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminHomeActivity.this, AdminRegisterStaffActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override

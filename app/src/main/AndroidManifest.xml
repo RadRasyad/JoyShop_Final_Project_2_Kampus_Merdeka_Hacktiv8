@@ -15,6 +15,13 @@
         android:theme="@style/Theme.JoyShop"
         tools:targetApi="31">
         <activity
+            android:name=".AdminAddStaffActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.admin.AdminHomeActivity"
             android:exported="false">
             <meta-data

@@ -1,4 +1,4 @@
-package com.hacktiv8.joyshop.ui.user;
+package com.hacktiv8.joyshop.ui.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,16 +17,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.hacktiv8.joyshop.databinding.ActivityRegisterUserBinding;
+import com.hacktiv8.joyshop.databinding.ActivityAdminRegisterStaffBinding;
 import com.hacktiv8.joyshop.model.User;
 
-public class RegisterUserActivity extends AppCompatActivity {
+public class AdminRegisterStaffActivity extends AppCompatActivity {
 
-    private ActivityRegisterUserBinding binding;
+    private ActivityAdminRegisterStaffBinding binding;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private String username, email, phone, pass1, pass2;
@@ -32,8 +32,10 @@ public class RegisterUserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityRegisterUserBinding.inflate(getLayoutInflater());
+        binding = ActivityAdminRegisterStaffBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference("Users");
@@ -42,9 +44,6 @@ public class RegisterUserActivity extends AppCompatActivity {
             registerUser();
         });
 
-        binding.btnLogin.setOnClickListener(v -> {
-            finish();
-        });
     }
 
     public static boolean isValidEmail(CharSequence email) {
@@ -86,7 +85,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
                     if (task.isSuccessful())
                         if (task.getResult().exists()) {
-                            Toast.makeText(RegisterUserActivity.this, "Username Sudah Terpakai", Toast.LENGTH_LONG).show();
+                            Toast.makeText( AdminRegisterStaffActivity.this, "Username Sudah Terpakai", Toast.LENGTH_LONG).show();
                         } else {
                             mAuth.createUserWithEmailAndPassword(email, pass1)
                                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -94,23 +93,23 @@ public class RegisterUserActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             try {
                                                 String uId = task.getResult().getUser().getUid();
-                                                User user = new User(uId, username, email, phone, "2");
+                                                User user = new User(uId, username, email, phone, "1");
                                                 if (task.isSuccessful()) {
                                                     mDatabase.child(username).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful()) {
                                                                 progressBar(false);
-                                                                Toast.makeText(RegisterUserActivity.this, "Terdaftar", Toast.LENGTH_LONG).show();
-                                                                new Handler().postDelayed(RegisterUserActivity.this::finish, 1000);
+                                                                Toast.makeText( AdminRegisterStaffActivity.this, "Terdaftar", Toast.LENGTH_LONG).show();
+                                                                new Handler().postDelayed( AdminRegisterStaffActivity.this::finish, 1000);
                                                             } else {
-                                                                Toast.makeText(RegisterUserActivity.this, "Gagal Mendaftar", Toast.LENGTH_LONG).show();
+                                                                Toast.makeText( AdminRegisterStaffActivity.this, "Gagal Mendaftar", Toast.LENGTH_LONG).show();
                                                                 progressBar(false);
                                                             }
                                                         }
                                                     });
                                                 } else {
-                                                    Toast.makeText(RegisterUserActivity.this, "Gagal Mendaftar", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText( AdminRegisterStaffActivity.this, "Gagal Mendaftar", Toast.LENGTH_LONG).show();
                                                     progressBar(false);
                                                 }
                                             } catch (Exception e) {
@@ -119,8 +118,6 @@ public class RegisterUserActivity extends AppCompatActivity {
                                         }
                                     });
                         }
-                        Log.i("RegisterUserActivity", String.valueOf(task.getResult().exists()));
-
                 }
             });
 
@@ -133,5 +130,19 @@ public class RegisterUserActivity extends AppCompatActivity {
         } else {
             binding.progressBar.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+        return true;
     }
 }
