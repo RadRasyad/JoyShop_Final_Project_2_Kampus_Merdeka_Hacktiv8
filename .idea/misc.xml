@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/android/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/activity_admin_home.xml" value="0.1" />
+        <entry key="..\:/android/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/activity_admin_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/android/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/android/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/activity_register_user.xml" value="0.20416666666666666" />
+        <entry key="..\:/android/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/activity_splash_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/android/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/activity_staff_login.xml" value="0.20416666666666666" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
