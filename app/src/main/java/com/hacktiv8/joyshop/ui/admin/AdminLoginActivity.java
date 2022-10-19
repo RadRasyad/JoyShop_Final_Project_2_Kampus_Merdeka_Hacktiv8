@@ -49,47 +49,54 @@ public class AdminLoginActivity extends AppCompatActivity {
         String username = binding.inputUsername.getText().toString().trim();
         String password = binding.inputPassword.getText().toString().trim();
 
-        mDatabase.child(username).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                boolean isExist = snapshot.exists();
-                if (isExist) {
-                    User user = snapshot.getValue(User.class);
-                    if (user.getRole().equals("0")) {
-                        mAuth.signInWithEmailAndPassword(user.getEmail(), password)
-                                .addOnCompleteListener(AdminLoginActivity.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()) {
-                                            User toSave = new User();
-                                            toSave.setuId(user.getuId());
-                                            toSave.setUsername(user.getUsername());
-                                            toSave.setEmail(user.getEmail());
-                                            toSave.setPhone(user.getPhone());
-                                            toSave.setRole(user.getRole());
-                                            saveUser(toSave);
-                                            reload();
-                                        } else {
-                                            Log.w("AdminLoginActivity", "signInWithEmail:failure", task.getException());
-                                            Toast.makeText(AdminLoginActivity.this, "Password Salah",
-                                                    Toast.LENGTH_SHORT).show();
+        try {
+            mDatabase.child(username).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    boolean isExist = snapshot.exists();
+                    if (isExist) {
+                        User user = snapshot.getValue(User.class);
+                        if (user.getRole().equals("0")) {
+                            mAuth.signInWithEmailAndPassword(user.getEmail(), password)
+                                    .addOnCompleteListener(AdminLoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+                                                User toSave = new User();
+                                                toSave.setuId(user.getuId());
+                                                toSave.setUsername(user.getUsername());
+                                                toSave.setEmail(user.getEmail());
+                                                toSave.setPhone(user.getPhone());
+                                                toSave.setRole(user.getRole());
+                                                saveUser(toSave);
+                                                reload();
+                                            } else {
+                                                Log.w("AdminLoginActivity", "signInWithEmail:failure", task.getException());
+                                                Toast.makeText(AdminLoginActivity.this, "Password Salah",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
+                                    });
+                        } else {
+                            Toast.makeText(AdminLoginActivity.this, "Anda Bukan Admin", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(AdminLoginActivity.this, "Anda Bukan Admin", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminLoginActivity.this,"Akun tidak ditemukan", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(AdminLoginActivity.this,"Akun tidak ditemukan", Toast.LENGTH_SHORT).show();
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(AdminLoginActivity.this, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(AdminLoginActivity.this, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(AdminLoginActivity.this, "Akun tidak ditemukan",
+                    Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+
     }
 
     @Override

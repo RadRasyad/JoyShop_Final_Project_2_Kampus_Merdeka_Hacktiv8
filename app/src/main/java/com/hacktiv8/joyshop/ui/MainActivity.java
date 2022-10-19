@@ -65,53 +65,57 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginUser() {
-        // TODO lakukan sesuatu untuk login user
         String username = binding.inputUsername.getText().toString().trim();
         String password = binding.inputPassword.getText().toString().trim();
 
-        databaseReference.child(username).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                boolean isExcist = snapshot.exists();
-                if(isExcist) {
-                    User user = snapshot.getValue(User.class);
-                    if(user.getRole().equals("2")){
-                        mAuth.signInWithEmailAndPassword(user.getEmail(), password)
-                                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if(task.isSuccessful()){
-                                            User toSave = new User();
-                                            toSave.setuId(user.getuId());
-                                            toSave.setUsername(user.getUsername());
-                                            toSave.setEmail(user.getEmail());
-                                            toSave.setPhone(user.getPhone());
-                                            toSave.setRole(user.getRole());
-                                            String role = user.getRole();
-                                            saveUser(toSave);
-                                            reload(role);
+        try {
+            databaseReference.child(username).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    boolean isExcist = snapshot.exists();
+                    if(isExcist) {
+                        User user = snapshot.getValue(User.class);
+                        if(user.getRole().equals("2")){
+                            mAuth.signInWithEmailAndPassword(user.getEmail(), password)
+                                    .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if(task.isSuccessful()){
+                                                User toSave = new User();
+                                                toSave.setuId(user.getuId());
+                                                toSave.setUsername(user.getUsername());
+                                                toSave.setEmail(user.getEmail());
+                                                toSave.setPhone(user.getPhone());
+                                                toSave.setRole(user.getRole());
+                                                String role = user.getRole();
+                                                saveUser(toSave);
+                                                reload(role);
 
-                                        }else{
-                                            Log.w("MainActivity", "signInWithEmail:failure", task.getException());
-                                            Toast.makeText(MainActivity.this, "Password Salah",
-                                                    Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Log.w("MainActivity", "signInWithEmail:failure", task.getException());
+                                                Toast.makeText(MainActivity.this, "Password Salah",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
-                    }else{
-                        Toast.makeText(MainActivity.this, "Anda Bukan User", Toast.LENGTH_SHORT).show();
+                                    });
+                        } else {
+                            Toast.makeText(MainActivity.this, "Anda Bukan User", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(MainActivity.this,"Akun tidak ditemukan", Toast.LENGTH_SHORT).show();
                     }
-                }else{
-                    Toast.makeText(MainActivity.this,"Akun tidak ditemukan", Toast.LENGTH_SHORT).show();
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity.this, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this,"Akun tidak ditemukan", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -136,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         } else if ("1".equals(role)) {
 //            Intent intent = new Intent(MainActivity.this, AdminHomeActivity.class);
 //            startActivity(intent);
-        } if ("2".equals(role)) {
+        } else if ("2".equals(role)) {
             Intent intent = new Intent(MainActivity.this, AdminHomeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
