@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="12dp"
+    android:padding="8dp"
     tools:context=".ui.user.DasboardActivity">
+
 
         <TextView
             android:id="@+id/username"
@@ -17,6 +18,18 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingHorizontal="10dp"
+            android:text="Filter"
+            android:layout_marginTop="8dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_background"
+            android:drawableLeft="@drawable/ic_filter"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,7 +49,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="14dp"
+                    android:layout_margin="12dp"
                     android:layout_gravity="center"
                     android:orientation="vertical">
 

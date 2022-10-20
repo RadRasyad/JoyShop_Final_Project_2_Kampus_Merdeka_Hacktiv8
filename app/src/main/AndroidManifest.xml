@@ -15,6 +15,9 @@
         android:theme="@style/Theme.JoyShop"
         tools:targetApi="31">
         <activity
+            android:name=".DetailProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".CategoryProductActivity"
             android:exported="false" />
         <activity

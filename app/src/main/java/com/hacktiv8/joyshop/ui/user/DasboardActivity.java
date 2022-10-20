@@ -39,7 +39,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
         preference = new UserPreference(this);
         if (user != null) {
             isLogin = true;
-            binding.username.setText(user.getEmail());
+            binding.username.setText("Halo,\n"+user.getEmail());
         } else {
             isLogin = false;
             finish();
