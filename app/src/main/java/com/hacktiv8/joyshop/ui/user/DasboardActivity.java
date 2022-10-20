@@ -2,28 +2,29 @@ package com.hacktiv8.joyshop.ui.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hacktiv8.joyshop.R;
-import com.hacktiv8.joyshop.adapter.CategoryAdapter;
+import com.hacktiv8.joyshop.adapter.ProductAdapter;
+import com.hacktiv8.joyshop.databinding.ActivityDasboardBinding;
 import com.hacktiv8.joyshop.preferences.UserPreference;
 import com.hacktiv8.joyshop.ui.MainActivity;
-import com.hacktiv8.joyshop.ui.admin.AdminHomeActivity;
 
 
-public class DasboardActivity extends AppCompatActivity {
+public class DasboardActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private RecyclerView categoryRv;
-    private CategoryAdapter categoryAdapter;
+    private ActivityDasboardBinding binding;
     private UserPreference preference;
+    private ImageView books, clothes, electronic, other;
     private boolean isLogin = false;
 
 
@@ -31,34 +32,47 @@ public class DasboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dasboard);
+        binding = ActivityDasboardBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         preference = new UserPreference(this);
         if (user != null) {
             isLogin = true;
+            binding.username.setText(user.getEmail());
         } else {
             isLogin = false;
             finish();
         }
 
-        categoryRv = findViewById(R.id.kategory_rv);
-        String[] categoryName = {"Books", "Clothes", "Electronics", "Other"};
-        int[] categoryIcon = {R.drawable.ic_book, R.drawable.ic_book, R.drawable.ic_book, R.drawable.ic_book };
-        categoryAdapter = new CategoryAdapter(this, DasboardActivity.this, categoryName, categoryIcon);
-        showRecyclerList();
-
+        books = findViewById(R.id.categoryBooks);
+        books.setOnClickListener(this);
+        clothes = findViewById(R.id.categoryClothes);
+        clothes.setOnClickListener(this);
+        electronic = findViewById(R.id.categoryElectronic);
+        electronic.setOnClickListener(this);
+        other = findViewById(R.id.categoryOther);
+        other.setOnClickListener(this);
 
 
 
     }
 
-    private void showRecyclerList() {
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 4);
-        categoryRv.setLayoutManager(layoutManager);
-        categoryRv.setAdapter(categoryAdapter);
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.categoryBooks:
+                break;
+            case R.id.categoryClothes:
+                break;
+            case R.id.categoryElectronic:
+                break;
+            case R.id.categoryOther:
+                break;
+        }
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -112,6 +126,7 @@ public class DasboardActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
 
 
 }
