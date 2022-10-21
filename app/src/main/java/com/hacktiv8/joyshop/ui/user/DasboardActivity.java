@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,8 +17,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.hacktiv8.joyshop.R;
 import com.hacktiv8.joyshop.adapter.ProductAdapter;
 import com.hacktiv8.joyshop.databinding.ActivityDasboardBinding;
+import com.hacktiv8.joyshop.model.Product;
 import com.hacktiv8.joyshop.preferences.UserPreference;
 import com.hacktiv8.joyshop.ui.MainActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DasboardActivity extends AppCompatActivity implements View.OnClickListener {
@@ -26,6 +31,10 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
     private UserPreference preference;
     private ImageView books, clothes, electronic, other;
     private boolean isLogin = false;
+    private RecyclerView rvProduct;
+    private List<Product> list = new ArrayList<>();
+    private ProductAdapter productAdapter;
+    private ProgressDialog progressDialog;
 
 
 
@@ -53,6 +62,14 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
         electronic.setOnClickListener(this);
         other = findViewById(R.id.categoryOther);
         other.setOnClickListener(this);
+
+        rvProduct = findViewById(R.id.rvProduct);
+        
+        progressDialog = new ProgressDialog(DasboardActivity.this);
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Mengambil Data....");
+
+        
 
 
 

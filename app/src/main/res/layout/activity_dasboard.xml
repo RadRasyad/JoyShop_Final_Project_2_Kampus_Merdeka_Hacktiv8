@@ -19,18 +19,6 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/buttonFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:paddingHorizontal="10dp"
-            android:text="Filter"
-            android:layout_marginTop="8dp"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:background="@drawable/btn_background"
-            android:drawableLeft="@drawable/ic_filter"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -161,7 +149,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/productRv"
+            android:id="@+id/rvProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
