@@ -43,7 +43,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
     private RecyclerView rvProduct;
     private List<Product> list = new ArrayList<>();
     private ProductAdapter productAdapter;
-    private ProgressDialog progressDialog;
+
 
 
     @Override
@@ -51,6 +51,8 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         binding = ActivityDasboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference("Product");
@@ -73,10 +75,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
         other.setOnClickListener(this);
 
         rvProduct = binding.rvProduct;
-        
-        progressDialog = new ProgressDialog(DasboardActivity.this);
-        progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Mengambil Data....");
+
 
         getData();
         rvProduct.setHasFixedSize(true);
@@ -182,3 +181,4 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
 
 
 }
+

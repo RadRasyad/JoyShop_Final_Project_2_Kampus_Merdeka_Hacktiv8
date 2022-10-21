@@ -2,6 +2,7 @@ package com.hacktiv8.joyshop.ui.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hacktiv8.joyshop.databinding.ItemProductBinding;
 import com.hacktiv8.joyshop.model.Product;
+import com.hacktiv8.joyshop.ui.user.DetailProductActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -17,15 +19,6 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
     private Context context;
     private List<Product> list;
-    private Dialog dialog;
-
-    public interface Dialog{
-        void onClick(int pos);
-    }
-
-    public void setDialog(Dialog dialog) {
-        this.dialog = dialog;
-    }
 
 
     public ProductAdapter(Context context, List<Product> list){
@@ -72,6 +65,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             binding.tvBrand.setText(product.getBrand());
 
             Picasso.get().load(product.getImg()).resize(1460, 1460).centerCrop().into(binding.ivProduct);
+            int position = getAdapterPosition();
+            itemView.setOnClickListener(view -> {
+                Intent intent = new Intent(context, DetailProductActivity.class);
+                intent.putExtra("img", list.get(position).getImg());
+                intent.putExtra("nama", list.get(position).getNama());
+                intent.putExtra("harga",list.get(position).getHrg());
+                intent.putExtra("stock",list.get(position).getStock());
+                intent.putExtra("desc",list.get(position).getDeskripsi());
+
+
+                itemView.getContext().startActivity(intent);
+            });
         }
     }
 }
