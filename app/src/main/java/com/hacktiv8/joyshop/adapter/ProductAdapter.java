@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.hacktiv8.joyshop.R;
 import com.hacktiv8.joyshop.model.Product;
 
@@ -47,7 +48,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.MyViewHolder holder, int position) {
-
+        Glide.with(context).load(list.get(position).getImg()).into(holder.img);
+        holder.nama.setText(list.get(position).getName());
+        holder.stock.setText(list.get(position).getStock());
+        holder.hrg.setText(list.get(position).getStock());
     }
 
     @Override
