@@ -22,7 +22,7 @@
         android:layout_marginTop="14dp"
         android:includeFontPadding="false"
         android:text="Rp 1800000"
-        android:textColor="@color/base"
+        android:textColor="@color/primaryColor"
         android:textStyle="bold"
         android:textSize="20dp" />
 

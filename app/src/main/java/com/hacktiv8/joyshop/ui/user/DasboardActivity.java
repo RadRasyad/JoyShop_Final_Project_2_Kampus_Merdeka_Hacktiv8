@@ -1,5 +1,6 @@
 package com.hacktiv8.joyshop.ui.user;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,8 +16,13 @@ import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.hacktiv8.joyshop.R;
-import com.hacktiv8.joyshop.adapter.ProductAdapter;
+import com.hacktiv8.joyshop.ui.adapter.ProductAdapter;
 import com.hacktiv8.joyshop.databinding.ActivityDasboardBinding;
 import com.hacktiv8.joyshop.model.Product;
 import com.hacktiv8.joyshop.preferences.UserPreference;
@@ -29,13 +36,14 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
 
     private ActivityDasboardBinding binding;
     private UserPreference preference;
+    private DatabaseReference mDatabase;
+
     private ImageView books, clothes, electronic, other;
     private boolean isLogin = false;
     private RecyclerView rvProduct;
     private List<Product> list = new ArrayList<>();
     private ProductAdapter productAdapter;
     private ProgressDialog progressDialog;
-
 
 
     @Override
@@ -45,6 +53,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
         setContentView(binding.getRoot());
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference("Product");
         preference = new UserPreference(this);
         if (user != null) {
             isLogin = true;
@@ -54,23 +63,24 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
             finish();
         }
 
-        books = findViewById(R.id.categoryBooks);
+        books = binding.categoryBooks;
         books.setOnClickListener(this);
-        clothes = findViewById(R.id.categoryClothes);
+        clothes = binding.categoryClothes;
         clothes.setOnClickListener(this);
-        electronic = findViewById(R.id.categoryElectronic);
+        electronic = binding.categoryElectronic;
         electronic.setOnClickListener(this);
-        other = findViewById(R.id.categoryOther);
+        other = binding.categoryOther;
         other.setOnClickListener(this);
 
-        rvProduct = findViewById(R.id.rvProduct);
+        rvProduct = binding.rvProduct;
         
         progressDialog = new ProgressDialog(DasboardActivity.this);
         progressDialog.setTitle("Loading");
         progressDialog.setMessage("Mengambil Data....");
 
-        
-
+        getData();
+        rvProduct.setHasFixedSize(true);
+        rvProduct.setLayoutManager(new GridLayoutManager(this, 2));
 
 
     }
@@ -89,7 +99,31 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    private void getData() {
 
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                list.clear();
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                    Product product = dataSnapshot.getValue(Product.class);
+                    if (product!=null) {
+                        list.add(product);
+                        productAdapter = new ProductAdapter(DasboardActivity.this, list);
+                        productAdapter.notifyDataSetChanged();
+                        rvProduct.setAdapter(productAdapter);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("DashboardActivity", "loadPost:onCancelled", error.toException());
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -112,6 +146,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+
 
     @Override
     public void onBackPressed() {
