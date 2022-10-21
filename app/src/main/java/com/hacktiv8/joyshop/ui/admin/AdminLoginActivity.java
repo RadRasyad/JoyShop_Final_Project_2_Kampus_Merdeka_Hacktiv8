@@ -84,7 +84,6 @@ public class AdminLoginActivity extends AppCompatActivity {
                         Toast.makeText(AdminLoginActivity.this,"Akun tidak ditemukan", Toast.LENGTH_SHORT).show();
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                     Toast.makeText(AdminLoginActivity.this, "Authentication failed.",

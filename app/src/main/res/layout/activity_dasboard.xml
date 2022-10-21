@@ -84,7 +84,7 @@
                             android:padding="14dp"
                             android:layout_width="65dp"
                             android:layout_height="65dp"
-                            android:src="@drawable/ic_book"/>
+                            android:src="@drawable/ic_laundry"/>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -109,7 +109,7 @@
                             android:padding="14dp"
                             android:layout_width="65dp"
                             android:layout_height="65dp"
-                            android:src="@drawable/ic_book"/>
+                            android:src="@drawable/ic_tv"/>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                             android:padding="14dp"
                             android:layout_width="65dp"
                             android:layout_height="65dp"
-                            android:src="@drawable/ic_book"/>
+                            android:src="@drawable/ic_etcsvg"/>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -159,10 +159,15 @@
             android:textStyle="bold" />
 
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productRv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_product"
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:itemCount="10"
+            tools:orientation="vertical"
+            tools:scrollbars="vertical"
+            tools:spanCount="2"/>
 
 </LinearLayout>

@@ -10,4 +10,8 @@
     <string name="comfirm_password">Comfirm Password</string>
     <string name="phone_number">Phone Number</string>
     <string name="email">Email</string>
+    <string name="judul">Judul</string>
+    <string name="sample_brand">LOOKBOUTIQUESTORE</string>
+    <string name="_30">30</string>
+    <string name="sample_price">Rp.150.000</string>
 </resources>
