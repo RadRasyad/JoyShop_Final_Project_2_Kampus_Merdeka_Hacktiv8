@@ -13,12 +13,13 @@
             android:layout_height="250dp">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/userItemPict"
+                    android:id="@+id/cardImg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="14dp">
 
                         <ImageView
+                            android:id="@+id/productImg"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
                             android:background="#747574"
@@ -35,7 +36,7 @@
                     android:id="@+id/productName"
                     android:layout_width="100dp"
                     android:layout_height="35dp"
-                    android:layout_below="@id/userItemPict"
+                    android:layout_below="@id/cardImg"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="5dp"
                     android:maxLines="2"
@@ -45,7 +46,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/productPrice"
+                    android:id="@+id/productHrg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/productName"
@@ -57,10 +58,10 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/stockCategory"
+                    android:id="@+id/productStock"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/productPrice"
+                    android:layout_below="@id/productHrg"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="10dp"
@@ -73,7 +74,7 @@
                     android:id="@+id/productCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/stockCategory"
+                    android:layout_below="@id/productStock"
                     android:layout_marginTop="5dp"
                     android:layout_marginHorizontal="8dp"
                     android:text="LOOKBOUTIQUESTORE"
