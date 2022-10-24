@@ -52,14 +52,12 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
         binding = ActivityDasboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference("Product");
         preference = new UserPreference(this);
         if (user != null) {
             isLogin = true;
-            binding.username.setText("Halo,\n"+user.getEmail());
+            binding.username.setText("Halo,\n"+preference.getUserPref().getUsername());
         } else {
             isLogin = false;
             finish();
@@ -76,11 +74,9 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
 
         rvProduct = binding.rvProduct;
 
-
         getData();
         rvProduct.setHasFixedSize(true);
         rvProduct.setLayoutManager(new GridLayoutManager(this, 2));
-
 
     }
 

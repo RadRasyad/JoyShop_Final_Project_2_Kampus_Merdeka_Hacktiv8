@@ -15,6 +15,20 @@
         android:theme="@style/Theme.JoyShop"
         tools:targetApi="31">
         <activity
+            android:name=".AdminAddProductActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.admin.AdminProductActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.user.DetailProductActivity"
             android:exported="false" />
         <activity
@@ -22,8 +36,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.user.DasboardActivity"
-            android:theme="@style/Theme.JoyShop.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.JoyShop.NoActionBar" />
         <activity
             android:name=".ui.admin.AdminRegisterStaffActivity"
             android:exported="false">

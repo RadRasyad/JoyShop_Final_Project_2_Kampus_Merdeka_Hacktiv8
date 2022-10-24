@@ -32,10 +32,11 @@ public class DetailProductActivity extends AppCompatActivity {
         binding.hrgTxt.setText("Rp "+getIntent().getStringExtra( "harga"));
         img = getIntent().getStringExtra("img");
 
-
         Picasso.Builder builder = new Picasso.Builder(this);
 
         builder.build().load(img)
+                .resize(1460, 1460)
+                .centerCrop()
                 .placeholder((R.drawable.ic_launcher_foreground))
                 .error(R.drawable.ic_launcher_foreground)
                 .into(binding.imgView);
@@ -45,8 +46,6 @@ public class DetailProductActivity extends AppCompatActivity {
 
         // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-
 
 
     }

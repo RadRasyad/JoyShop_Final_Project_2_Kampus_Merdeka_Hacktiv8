@@ -33,7 +33,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         preference = new UserPreference(this);
         if (user != null) {
             isLogin = true;
-            binding.email.setText(user.getEmail());
+            binding.username.setText("Hello, "+preference.getUserPref().getUsername());
         } else {
             isLogin = false;
             finish();
@@ -43,6 +43,12 @@ public class AdminHomeActivity extends AppCompatActivity {
             Intent intent = new Intent(AdminHomeActivity.this, AdminRegisterStaffActivity.class);
             startActivity(intent);
         });
+
+        binding.btnAddStock.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminHomeActivity.this, AdminProductActivity.class);
+            startActivity(intent);
+        });
+
     }
 
     @Override

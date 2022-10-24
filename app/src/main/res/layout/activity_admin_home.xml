@@ -5,19 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.admin.AdminHomeActivity"
+    android:padding="16dp"
     tools:menu="@menu/admin_menu">
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/email"
+        android:maxWidth="360dp"
+        android:layout_marginTop="48dp"
+        android:text="Hello, Admin"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:layout_marginBottom="48dp"
+        android:src="@drawable/illustrator_manager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Stock"
