@@ -14,4 +14,6 @@
     <string name="sample_brand">LOOKBOUTIQUESTORE</string>
     <string name="_30">30</string>
     <string name="sample_price">Rp.150.000</string>
+    <string name="nama">Nama</string>
+    <string name="id">ID</string>
 </resources>

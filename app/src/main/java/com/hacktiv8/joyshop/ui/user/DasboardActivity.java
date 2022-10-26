@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,11 +21,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hacktiv8.joyshop.R;
-import com.hacktiv8.joyshop.ui.adapter.ProductAdapter;
 import com.hacktiv8.joyshop.databinding.ActivityDasboardBinding;
+import com.hacktiv8.joyshop.ui.adapter.ProductAdapter;
 import com.hacktiv8.joyshop.model.Product;
 import com.hacktiv8.joyshop.preferences.UserPreference;
 import com.hacktiv8.joyshop.ui.MainActivity;
+import com.hacktiv8.joyshop.ui.user.product.ListProductActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +93,9 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
             case R.id.categoryElectronic:
                 break;
             case R.id.categoryOther:
+                Intent intentOther = new Intent(DasboardActivity.this, ListProductActivity.class);
+                intentOther.putExtra(ListProductActivity.EXTRA_TYPE, "other");
+                startActivity(intentOther);
                 break;
         }
     }
@@ -102,7 +105,6 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 list.clear();
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     Product product = dataSnapshot.getValue(Product.class);

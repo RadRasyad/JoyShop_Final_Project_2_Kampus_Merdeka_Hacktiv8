@@ -1,4 +1,4 @@
-package com.hacktiv8.joyshop.ui.user;
+package com.hacktiv8.joyshop.ui.user.product;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +18,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.hacktiv8.joyshop.databinding.ActivityListProductBinding;
 import com.hacktiv8.joyshop.model.Product;
 import com.hacktiv8.joyshop.ui.adapter.ProductAdapter;
-import com.hacktiv8.joyshop.ui.admin.AdminProductActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +38,6 @@ public class ListProductActivity extends AppCompatActivity {
         binding = ActivityListProductBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         rvProduct = binding.rvProduct;
 
         mDatabase = FirebaseDatabase.getInstance().getReference("Product");
@@ -52,9 +50,6 @@ public class ListProductActivity extends AppCompatActivity {
         rvProduct.setLayoutManager(new GridLayoutManager(this, 2));
 
         String type = getIntent().getStringExtra(EXTRA_TYPE);
-        Log.i("ListProductActivity", String.valueOf(type));
-
-
 
         if (type!=null) {
             if (Objects.equals(type, "books")) {
