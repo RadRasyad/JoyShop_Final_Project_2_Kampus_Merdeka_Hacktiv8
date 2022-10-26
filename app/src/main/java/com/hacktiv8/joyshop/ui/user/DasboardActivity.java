@@ -89,8 +89,14 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
                 break;
             case R.id.categoryClothes:
+                Intent intentClothes = new Intent(DasboardActivity.this, ListProductActivity.class);
+                intentClothes.putExtra(ListProductActivity.EXTRA_TYPE, "clothes");
+                startActivity(intentClothes);
                 break;
             case R.id.categoryElectronic:
+                Intent intentElectro = new Intent(DasboardActivity.this, ListProductActivity.class);
+                intentElectro.putExtra(ListProductActivity.EXTRA_TYPE, "electronics");
+                startActivity(intentElectro);
                 break;
             case R.id.categoryOther:
                 Intent intentOther = new Intent(DasboardActivity.this, ListProductActivity.class);
@@ -99,6 +105,8 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+
+
 
     private void getData() {
 

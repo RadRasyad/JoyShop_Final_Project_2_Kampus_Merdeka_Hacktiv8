@@ -55,12 +55,16 @@ public class ListProductActivity extends AppCompatActivity {
             if (Objects.equals(type, "books")) {
                 getData(type);
                 getSupportActionBar().setTitle("Books");
+            }else if(Objects.equals(type, "clothes")){
+                getData(type);
+                getSupportActionBar().setTitle("Clothes");
+            } else if(Objects.equals(type, "electronics")){
+                getData(type);
+                getSupportActionBar().setTitle("Electronics");
             } else {
                 getData(type);
                 getSupportActionBar().setTitle("Other");
             }
-
-
         }
 
     }
