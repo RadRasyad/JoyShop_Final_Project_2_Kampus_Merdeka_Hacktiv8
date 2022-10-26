@@ -1,26 +1,24 @@
 package com.hacktiv8.joyshop.model;
 
 public class Product {
-    private String id, nama, brand, kategory, deskripsi, img, tipe;
-    private String hrg, stock;
+    private String id, nama, brand, deskripsi, img, tipe, hrg, stock, gender, kategori;
 
     public Product() {
 
     }
 
-    public Product(String id, String nama, String stock, String img, String tipe, String hrg, String deskripsi, String brand, String kategory){
+    public Product(String id, String nama, String brand, String deskripsi, String img, String tipe, String hrg, String stock, String gender, String kategori) {
         this.id = id;
         this.nama = nama;
-        this.stock = stock;
-        this.img = img;
-        this.kategory = kategory;
-        this.hrg = hrg;
-        this.deskripsi = deskripsi;
-        this.tipe = tipe;
         this.brand = brand;
+        this.deskripsi = deskripsi;
+        this.img = img;
+        this.tipe = tipe;
+        this.hrg = hrg;
+        this.stock = stock;
+        this.gender = gender;
+        this.kategori = kategori;
     }
-
-
     public String getId() {
         return id;
     }
@@ -43,14 +41,6 @@ public class Product {
 
     public void setBrand(String brand) {
         this.brand = brand;
-    }
-
-    public String getKategory() {
-        return kategory;
-    }
-
-    public void setKategory(String kategory) {
-        this.kategory = kategory;
     }
 
     public String getDeskripsi() {
@@ -92,4 +82,22 @@ public class Product {
     public void setStock(String stock) {
         this.stock = stock;
     }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
+
+
 }

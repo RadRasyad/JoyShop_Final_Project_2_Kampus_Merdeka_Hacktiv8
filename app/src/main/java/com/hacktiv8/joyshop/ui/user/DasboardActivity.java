@@ -84,6 +84,9 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.categoryBooks:
+                Intent intent = new Intent(DasboardActivity.this, ListProductActivity.class);
+                intent.putExtra(ListProductActivity.EXTRA_TYPE, "books");
+                startActivity(intent);
                 break;
             case R.id.categoryClothes:
                 break;

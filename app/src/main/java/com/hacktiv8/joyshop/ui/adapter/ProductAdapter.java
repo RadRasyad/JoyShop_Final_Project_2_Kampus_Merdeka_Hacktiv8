@@ -72,7 +72,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 intent.putExtra("stock",list.get(position).getStock());
                 intent.putExtra("desc",list.get(position).getDeskripsi());
 
-
                 itemView.getContext().startActivity(intent);
             });
         }
