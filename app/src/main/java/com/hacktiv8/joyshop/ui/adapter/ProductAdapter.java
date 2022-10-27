@@ -59,7 +59,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         public void bind(Product product) {
             binding.tvJudul.setText(product.getNama());
             binding.tvHarga.setText("Rp."+product.getHrg());
-            binding.tvStok.setText(product.getStock());
+            binding.tvStok.setText(product.getStok());
             binding.tvBrand.setText(product.getBrand());
 
             Picasso.get().load(product.getImg()).resize(1460, 1460).centerCrop().into(binding.ivProduct);
@@ -69,7 +69,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 intent.putExtra("img", list.get(position).getImg());
                 intent.putExtra("nama", list.get(position).getNama());
                 intent.putExtra("harga",list.get(position).getHrg());
-                intent.putExtra("stock",list.get(position).getStock());
+                intent.putExtra("stock",list.get(position).getStok());
                 intent.putExtra("desc",list.get(position).getDeskripsi());
 
                 itemView.getContext().startActivity(intent);

@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.hacktiv8.joyshop.databinding.ActivityAdminProductBinding;
 import com.hacktiv8.joyshop.model.Product;
 import com.hacktiv8.joyshop.ui.adapter.ProductAdapter;
@@ -26,7 +28,7 @@ import java.util.List;
 public class AdminProductActivity extends AppCompatActivity {
 
     private ActivityAdminProductBinding binding;
-    private DatabaseReference mDatabase;
+    private FirebaseFirestore db;
     private RecyclerView rvProduct;
     private List<Product> list = new ArrayList<>();
     private ProductAdapter productAdapter;
@@ -37,7 +39,7 @@ public class AdminProductActivity extends AppCompatActivity {
         binding = ActivityAdminProductBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("Product");
+        db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
             finish();
@@ -53,27 +55,21 @@ public class AdminProductActivity extends AppCompatActivity {
 
     private void getData() {
 
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                list.clear();
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                    Product product = dataSnapshot.getValue(Product.class);
-                    if (product!=null) {
-                        list.add(product);
+        db.collection("produk").get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        list.clear();
+                        for (QueryDocumentSnapshot documentSnapshot: task.getResult()) {
+                            Product product = documentSnapshot.toObject(Product.class);
+                            list.add(product);
+                        }
+                        Log.d("AdminProduk", String.valueOf(list.size()));
                         productAdapter = new ProductAdapter(AdminProductActivity.this, list);
                         productAdapter.notifyDataSetChanged();
                         rvProduct.setAdapter(productAdapter);
+                    } else {
+                        Log.w("AdminProduk", "loadPost:onCancelled", task.getException());
                     }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w("DashboardActivity", "loadPost:onCancelled", error.toException());
-            }
-        });
+                });
     }
 }

@@ -1,13 +1,14 @@
 package com.hacktiv8.joyshop.model;
 
 public class Product {
-    private String id, nama, brand, deskripsi, img, tipe, hrg, stock, gender, kategori;
+
+    private String id, nama, brand, deskripsi, img, tipe, hrg, stok, gender, kategori;
 
     public Product() {
 
     }
 
-    public Product(String id, String nama, String brand, String deskripsi, String img, String tipe, String hrg, String stock, String gender, String kategori) {
+    public Product(String id, String nama, String brand, String deskripsi, String img, String tipe, String hrg, String stok, String gender, String kategori) {
         this.id = id;
         this.nama = nama;
         this.brand = brand;
@@ -15,7 +16,7 @@ public class Product {
         this.img = img;
         this.tipe = tipe;
         this.hrg = hrg;
-        this.stock = stock;
+        this.stok = stok;
         this.gender = gender;
         this.kategori = kategori;
     }
@@ -75,12 +76,12 @@ public class Product {
         this.hrg = hrg;
     }
 
-    public String getStock() {
-        return stock;
+    public String getStok() {
+        return stok;
     }
 
-    public void setStock(String stock) {
-        this.stock = stock;
+    public void setStok(String stok) {
+        this.stok = stok;
     }
 
     public String getGender() {
