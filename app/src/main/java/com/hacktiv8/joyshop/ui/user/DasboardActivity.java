@@ -96,9 +96,9 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intentClothes);
                 break;
             case R.id.categoryElectronic:
-//                Intent intentElectro = new Intent(DasboardActivity.this, ListProductActivity.class);
-//                intentElectro.putExtra(ListProductActivity.EXTRA_TYPE, "electronics");
-//                startActivity(intentElectro);
+                Intent intentElectro = new Intent(DasboardActivity.this, ListProductActivity.class);
+                intentElectro.putExtra(ListProductActivity.EXTRA_TYPE, "electronics");
+                startActivity(intentElectro);
                 break;
             case R.id.categoryOther:
                 Intent intentOther = new Intent(DasboardActivity.this, ListProductActivity.class);
