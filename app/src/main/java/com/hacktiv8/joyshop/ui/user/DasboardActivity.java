@@ -28,6 +28,7 @@ import com.hacktiv8.joyshop.ui.adapter.ProductAdapter;
 import com.hacktiv8.joyshop.model.Product;
 import com.hacktiv8.joyshop.preferences.UserPreference;
 import com.hacktiv8.joyshop.ui.MainActivity;
+import com.hacktiv8.joyshop.ui.user.product.CategoryActivity;
 import com.hacktiv8.joyshop.ui.user.product.ListProductActivity;
 
 import java.util.ArrayList;
@@ -91,14 +92,13 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
                 break;
             case R.id.categoryClothes:
-                Intent intentClothes = new Intent(DasboardActivity.this, ListProductActivity.class);
-                intentClothes.putExtra(ListProductActivity.EXTRA_TYPE, "clothes");
+                Intent intentClothes = new Intent(DasboardActivity.this, CategoryActivity.class);
                 startActivity(intentClothes);
                 break;
             case R.id.categoryElectronic:
-                Intent intentElectro = new Intent(DasboardActivity.this, ListProductActivity.class);
-                intentElectro.putExtra(ListProductActivity.EXTRA_TYPE, "electronics");
-                startActivity(intentElectro);
+//                Intent intentElectro = new Intent(DasboardActivity.this, ListProductActivity.class);
+//                intentElectro.putExtra(ListProductActivity.EXTRA_TYPE, "electronics");
+//                startActivity(intentElectro);
                 break;
             case R.id.categoryOther:
                 Intent intentOther = new Intent(DasboardActivity.this, ListProductActivity.class);

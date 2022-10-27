@@ -1,4 +1,4 @@
-package com.hacktiv8.joyshop.ui.user.product;
+package com.hacktiv8.joyshop.ui.user.product.clothes;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -11,19 +11,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.hacktiv8.joyshop.databinding.ActivityListProductBinding;
+import com.hacktiv8.joyshop.databinding.ActivityClothesCategoryListBinding;
 import com.hacktiv8.joyshop.model.Product;
 import com.hacktiv8.joyshop.ui.adapter.ProductAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class ListProductActivity extends AppCompatActivity {
+public class ClothesCategoryListActivity extends AppCompatActivity {
 
-    private ActivityListProductBinding binding;
+    private ActivityClothesCategoryListBinding binding;
+    public static final String EXTRA_GENDER = "extra_gender";
+    public static final String EXTRA_CATEGORY = "extra_category";
     private FirebaseFirestore db;
-    public static final String EXTRA_TYPE = "extra_type";
     private RecyclerView rvProduct;
     private List<Product> list = new ArrayList<>();
     private ProductAdapter productAdapter;
@@ -31,10 +31,12 @@ public class ListProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityListProductBinding.inflate(getLayoutInflater());
+        binding = ActivityClothesCategoryListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         rvProduct = binding.rvProduct;
+        String gender = getIntent().getStringExtra(EXTRA_GENDER);
+        String category = getIntent().getStringExtra(EXTRA_CATEGORY);
 
         db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -45,24 +47,18 @@ public class ListProductActivity extends AppCompatActivity {
         rvProduct.setHasFixedSize(true);
         rvProduct.setLayoutManager(new GridLayoutManager(this, 2));
 
-        String type = getIntent().getStringExtra(EXTRA_TYPE);
-
-        if (type!=null) {
-            if (Objects.equals(type, "books")) {
-                getData(type);
-                getSupportActionBar().setTitle("Books");
-            } else {
-                getData(type);
-                getSupportActionBar().setTitle("Other");
-            }
+        if (category!=null) {
+            getData(gender, category);
         }
-
     }
 
-    private void getData(String type) {
+    private void getData(String gender, String category) {
 
-        db.collection("produk").whereEqualTo("tipe", type).get()
-                .addOnCompleteListener(task -> {
+        db.collection("produk")
+                .whereEqualTo("tipe", "clothes")
+                .whereEqualTo("gender", gender)
+                .whereEqualTo("kategori", category)
+                .get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         list.clear();
                         for (QueryDocumentSnapshot documentSnapshot: task.getResult()) {
@@ -70,7 +66,7 @@ public class ListProductActivity extends AppCompatActivity {
                             list.add(product);
                         }
                         Log.d("AdminProduk", String.valueOf(list.size()));
-                        productAdapter = new ProductAdapter(ListProductActivity.this, list);
+                        productAdapter = new ProductAdapter(ClothesCategoryListActivity.this, list);
                         productAdapter.notifyDataSetChanged();
                         rvProduct.setAdapter(productAdapter);
                     } else {
@@ -78,4 +74,6 @@ public class ListProductActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 }

@@ -23,7 +23,7 @@
         android:layout_width="360dp"
         android:layout_height="360dp"
         android:layout_marginBottom="48dp"
-        android:src="@drawable/illustrator_manager"
+        android:src="@drawable/illustration_manager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

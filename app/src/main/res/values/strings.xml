@@ -21,4 +21,7 @@
     <string name="brand">Brand</string>
     <string name="gender">Gender</string>
     <string name="tipe">Tipe</string>
+    <string name="wanita">Wanita</string>
+    <string name="pria">Pria</string>
+    <string name="atasan">Atasan</string>
 </resources>
