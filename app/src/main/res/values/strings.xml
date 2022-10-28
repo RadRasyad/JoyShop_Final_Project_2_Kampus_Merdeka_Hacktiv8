@@ -29,4 +29,31 @@
     <string name="smartphone">Phone</string>
     <string name="keyboard">Keyboard</string>
     <string name="mouse">Mouse</string>
+    <string name="kategori">Kategori</string>
+
+    <string-array name="gender_array">
+        <item>Pria</item>
+        <item>Wanita</item>
+        <item>Unisex</item>
+    </string-array>
+
+    <string-array name="tipe_array">
+        <item>Pakaian</item>
+        <item>Elektronik</item>
+        <item>Buku</item>
+        <item>Lainnya</item>
+    </string-array>
+
+    <string-array name="kategori_array">
+        <item>Atasan</item>
+        <item>Formal</item>
+        <item>Celana</item>
+        <item>Sepatu</item>
+        <item>Buku</item>
+        <item>Smartphone</item>
+        <item>Laptop</item>
+        <item>Keyboard</item>
+        <item>Mouse</item>
+    </string-array>
+
 </resources>

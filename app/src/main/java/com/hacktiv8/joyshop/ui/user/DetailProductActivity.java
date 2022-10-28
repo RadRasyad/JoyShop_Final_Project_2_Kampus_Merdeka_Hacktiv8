@@ -17,7 +17,6 @@ import com.squareup.picasso.Picasso;
 
 public class DetailProductActivity extends AppCompatActivity {
     private ActivityDetailProductBinding binding;
-
     String img;
 
     @Override

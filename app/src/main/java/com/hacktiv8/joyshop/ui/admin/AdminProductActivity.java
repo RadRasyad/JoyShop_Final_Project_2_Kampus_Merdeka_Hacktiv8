@@ -1,26 +1,21 @@
 package com.hacktiv8.joyshop.ui.admin;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.hacktiv8.joyshop.databinding.ActivityAdminProductBinding;
 import com.hacktiv8.joyshop.model.Product;
 import com.hacktiv8.joyshop.ui.adapter.ProductAdapter;
-import com.hacktiv8.joyshop.ui.user.DasboardActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +27,7 @@ public class AdminProductActivity extends AppCompatActivity {
     private RecyclerView rvProduct;
     private List<Product> list = new ArrayList<>();
     private ProductAdapter productAdapter;
+    private int lastId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +47,19 @@ public class AdminProductActivity extends AppCompatActivity {
         rvProduct.setHasFixedSize(true);
         rvProduct.setLayoutManager(new GridLayoutManager(this, 2));
 
+        binding.fabAdd.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminProductActivity.this, AdminAddProductActivity.class);
+            intent.putExtra(AdminAddProductActivity.EXTRA_ID, lastId);
+            startActivity(intent);
+        });
+
     }
 
     private void getData() {
 
-        db.collection("produk").get()
+        db.collection("produk")
+                .orderBy("id", Query.Direction.ASCENDING)
+                .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         list.clear();
@@ -64,6 +68,8 @@ public class AdminProductActivity extends AppCompatActivity {
                             list.add(product);
                         }
                         Log.d("AdminProduk", String.valueOf(list.size()));
+                        lastId = list.get(list.size()-1).getId();
+                        Log.d("AdminProduk", String.valueOf(lastId));
                         productAdapter = new ProductAdapter(AdminProductActivity.this, list);
                         productAdapter.notifyDataSetChanged();
                         rvProduct.setAdapter(productAdapter);
