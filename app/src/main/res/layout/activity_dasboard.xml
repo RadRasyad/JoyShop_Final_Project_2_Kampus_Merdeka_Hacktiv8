@@ -31,6 +31,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
+                            android:id="@+id/menu"
                             android:layout_margin="8dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

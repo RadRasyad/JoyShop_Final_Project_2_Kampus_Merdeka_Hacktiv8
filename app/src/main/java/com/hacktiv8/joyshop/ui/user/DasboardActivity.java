@@ -2,6 +2,7 @@ package com.hacktiv8.joyshop.ui.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,8 +48,6 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
     private List<Product> list = new ArrayList<>();
     private ProductAdapter productAdapter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +79,27 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
         getData();
         rvProduct.setHasFixedSize(true);
         rvProduct.setLayoutManager(new GridLayoutManager(this, 2));
+
+        binding.menu.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(DasboardActivity.this, v);
+            popupMenu.getMenuInflater().inflate(R.menu.admin_menu, popupMenu.getMenu());
+
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.logout:
+                            FirebaseAuth.getInstance().signOut();
+                            preference.deleteUserPref();
+                            reload();
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
+            });
+            popupMenu.show();
+        });
 
     }
 
