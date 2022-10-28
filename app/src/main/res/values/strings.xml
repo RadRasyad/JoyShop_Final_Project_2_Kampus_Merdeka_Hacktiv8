@@ -25,4 +25,8 @@
     <string name="pria">Pria</string>
     <string name="atasan">Atasan</string>
     <string name="deskripsi">Deskripsi</string>
+    <string name="laptop">Laptop</string>
+    <string name="smartphone">Phone</string>
+    <string name="keyboard">Keyboard</string>
+    <string name="mouse">Mouse</string>
 </resources>

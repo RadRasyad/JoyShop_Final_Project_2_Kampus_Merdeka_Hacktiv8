@@ -16,11 +16,6 @@ import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.hacktiv8.joyshop.R;
@@ -31,6 +26,7 @@ import com.hacktiv8.joyshop.preferences.UserPreference;
 import com.hacktiv8.joyshop.ui.MainActivity;
 import com.hacktiv8.joyshop.ui.user.product.CategoryActivity;
 import com.hacktiv8.joyshop.ui.user.product.ListProductActivity;
+import com.hacktiv8.joyshop.ui.user.product.electronics.ElectronicsProductActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,8 +112,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intentClothes);
                 break;
             case R.id.categoryElectronic:
-                Intent intentElectro = new Intent(DasboardActivity.this, ListProductActivity.class);
-                intentElectro.putExtra(ListProductActivity.EXTRA_TYPE, "electronics");
+                Intent intentElectro = new Intent(DasboardActivity.this, ElectronicsProductActivity.class);
                 startActivity(intentElectro);
                 break;
             case R.id.categoryOther:

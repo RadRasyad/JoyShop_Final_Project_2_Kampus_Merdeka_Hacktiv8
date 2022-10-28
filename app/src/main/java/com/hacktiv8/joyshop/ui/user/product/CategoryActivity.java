@@ -29,7 +29,8 @@ public class CategoryActivity extends AppCompatActivity {
             intent.putExtra(ClothesProductActivity.GENDER_TYPE,"woman");
             startActivity(intent);
         });
-
+        
+        getSupportActionBar().setTitle("Clothes");
 
     }
 }

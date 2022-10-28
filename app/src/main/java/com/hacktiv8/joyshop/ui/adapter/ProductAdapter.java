@@ -4,13 +4,17 @@ package com.hacktiv8.joyshop.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hacktiv8.joyshop.R;
+import com.hacktiv8.joyshop.databinding.AdminItemProductBinding;
 import com.hacktiv8.joyshop.databinding.ItemProductBinding;
 import com.hacktiv8.joyshop.model.Product;
+import com.hacktiv8.joyshop.ui.admin.AdminAddProductActivity;
 import com.hacktiv8.joyshop.ui.user.DetailProductActivity;
 import com.squareup.picasso.Picasso;
 
@@ -29,8 +33,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     @NonNull
     @Override
     public ProductAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemProductBinding binding = ItemProductBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new MyViewHolder(binding);
+            ItemProductBinding binding = ItemProductBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+            return new MyViewHolder(binding);
     }
 
     @Override
@@ -53,7 +57,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         public MyViewHolder(ItemProductBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-
         }
 
         public void bind(Product product) {
@@ -74,6 +77,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
                 itemView.getContext().startActivity(intent);
             });
+
         }
     }
 }

@@ -46,6 +46,8 @@ public class ClothesProductActivity extends AppCompatActivity {
             finish();
         }
 
+        getSupportActionBar().setTitle("Clothes");
+
         rvProduct.setHasFixedSize(true);
         rvProduct.setLayoutManager(new GridLayoutManager(this, 2));
 
