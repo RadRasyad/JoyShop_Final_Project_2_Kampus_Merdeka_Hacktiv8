@@ -23,6 +23,7 @@ import com.hacktiv8.joyshop.model.User;
 import com.hacktiv8.joyshop.preferences.UserPreference;
 import com.hacktiv8.joyshop.ui.admin.AdminHomeActivity;
 import com.hacktiv8.joyshop.ui.admin.AdminLoginActivity;
+import com.hacktiv8.joyshop.ui.staff.StaffHomeActivity;
 import com.hacktiv8.joyshop.ui.staff.StaffLoginActivity;
 import com.hacktiv8.joyshop.ui.user.DasboardActivity;
 import com.hacktiv8.joyshop.ui.user.RegisterUserActivity;
@@ -134,13 +135,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void reload(String role) {
-
         if ("0".equals(role)) {
             Intent intent = new Intent(MainActivity.this, AdminHomeActivity.class);
             startActivity(intent);
         } else if ("1".equals(role)) {
-//            Intent intent = new Intent(MainActivity.this, AdminHomeActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, StaffHomeActivity.class);
+            startActivity(intent);
         } else if ("2".equals(role)) {
             Intent intent = new Intent(MainActivity.this, DasboardActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
