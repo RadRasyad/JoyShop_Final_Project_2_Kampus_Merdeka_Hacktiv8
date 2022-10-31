@@ -55,6 +55,12 @@ public class AdminProductActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
+    }
+
     private void getData() {
 
         db.collection("produk")

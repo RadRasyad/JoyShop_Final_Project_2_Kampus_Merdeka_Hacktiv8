@@ -64,28 +64,28 @@ public class ClothesProductActivity extends AppCompatActivity {
         binding.categoryTshirt.setOnClickListener(v -> {
             Intent intent = new Intent(ClothesProductActivity.this, ClothesCategoryListActivity.class);
             intent.putExtra(ClothesCategoryListActivity.EXTRA_GENDER, gender);
-            intent.putExtra(ClothesCategoryListActivity.EXTRA_CATEGORY, gender+"_tshirt");
+            intent.putExtra(ClothesCategoryListActivity.EXTRA_CATEGORY, "baju");
             startActivity(intent);
         });
 
         binding.categoryformal.setOnClickListener(v -> {
             Intent intent = new Intent(ClothesProductActivity.this, ClothesCategoryListActivity.class);
             intent.putExtra(ClothesCategoryListActivity.EXTRA_GENDER, gender);
-            intent.putExtra(ClothesCategoryListActivity.EXTRA_CATEGORY, gender+"_formal");
+            intent.putExtra(ClothesCategoryListActivity.EXTRA_CATEGORY, "formal");
             startActivity(intent);
         });
 
         binding.categoryPant.setOnClickListener(v -> {
             Intent intent = new Intent(ClothesProductActivity.this, ClothesCategoryListActivity.class);
             intent.putExtra(ClothesCategoryListActivity.EXTRA_GENDER, gender);
-            intent.putExtra(ClothesCategoryListActivity.EXTRA_CATEGORY, gender+"_celana");
+            intent.putExtra(ClothesCategoryListActivity.EXTRA_CATEGORY, "celana");
             startActivity(intent);
         });
 
         binding.categoryShoes.setOnClickListener(v -> {
             Intent intent = new Intent(ClothesProductActivity.this, ClothesCategoryListActivity.class);
             intent.putExtra(ClothesCategoryListActivity.EXTRA_GENDER, gender);
-            intent.putExtra(ClothesCategoryListActivity.EXTRA_CATEGORY, gender+"_sepatu");
+            intent.putExtra(ClothesCategoryListActivity.EXTRA_CATEGORY, "sepatu");
             startActivity(intent);
         });
 
