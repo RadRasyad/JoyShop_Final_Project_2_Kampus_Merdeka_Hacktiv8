@@ -7,6 +7,6 @@ E-Commerce App
     - Username : Admin
     - Pass     : 12345678
  
- 2. User
+ 2. User/(u can register in the app)
     - Username : testUser
     - Pass     : 12345678
