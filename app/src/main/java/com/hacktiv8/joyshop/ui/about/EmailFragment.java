@@ -1,5 +1,7 @@
 package com.hacktiv8.joyshop.ui.about;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,6 +25,40 @@ public class EmailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentEmailBinding.inflate(inflater, container, false);
+
+        binding.emailKhonsa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.setData(Uri.parse("mailto:"));
+                email.setType("text/plain");
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"khonsa.fathimah@gmail.com"});
+                startActivity(Intent.createChooser(email, "Send mail"));
+            }
+        });
+
+        binding.emailRafi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.setData(Uri.parse("mailto:"));
+                email.setType("text/plain");
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"Rafidany21@gmail.com"});
+                startActivity(Intent.createChooser(email, "Send mail"));
+            }
+        });
+
+        binding.emailNadhif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.setData(Uri.parse("mailto:"));
+                email.setType("text/plain");
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"syaifunnadhif@gmail.com"});
+                startActivity(Intent.createChooser(email, "Send email"));
+            }
+        });
+
         return binding.getRoot();
     }
 }
