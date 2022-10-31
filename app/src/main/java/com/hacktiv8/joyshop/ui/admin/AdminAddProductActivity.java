@@ -2,6 +2,7 @@ package com.hacktiv8.joyshop.ui.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cursoradapter.widget.SimpleCursorAdapter;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ public class AdminAddProductActivity extends AppCompatActivity
     private FirebaseFirestore db;
     public static final String INTENT_TYPE = "intent_type";
     public static final String EXTRA_ID = "extra_id";
+    ArrayAdapter<CharSequence> adapterKategori;
     private int lastId;
 
     @Override
@@ -43,9 +45,8 @@ public class AdminAddProductActivity extends AppCompatActivity
             finish();
         }
 
+        boolean isEdit = getIntent().getBooleanExtra(INTENT_TYPE, false);
         lastId = getIntent().getIntExtra(EXTRA_ID, 0);
-
-        binding.inputId.setText(String.valueOf(lastId+1));
 
         Spinner spinnerGender = binding.spinnerGender;
         Spinner spinnerTipe = binding.spinnerTipe;
@@ -57,7 +58,6 @@ public class AdminAddProductActivity extends AppCompatActivity
         ArrayAdapter<CharSequence> adapterTipe = ArrayAdapter.createFromResource(this,
                 R.array.tipe_array, android.R.layout.simple_spinner_item);
 
-
         adapterGender.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGender.setAdapter(adapterGender);
         spinnerGender.setOnItemSelectedListener(this);
@@ -66,7 +66,7 @@ public class AdminAddProductActivity extends AppCompatActivity
         spinnerTipe.setAdapter(adapterTipe);
 
         spinnerTipe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            ArrayAdapter<CharSequence> adapterKategori;
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String tempTipe = spinnerTipe.getSelectedItem().toString();
@@ -89,9 +89,15 @@ public class AdminAddProductActivity extends AppCompatActivity
                                 R.array.kategori_other_array, android.R.layout.simple_spinner_item);
                         break;
                 }
+
                 adapterKategori.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerKategori.setAdapter(adapterKategori);
                 spinnerKategori.setOnItemSelectedListener(this);
+                if (isEdit) {
+                    if(adapterKategori!=null) {
+                        spinnerKategori.setSelection(adapterKategori.getPosition(getIntent().getStringExtra("kategori")));
+                    }
+                }
             }
 
             @Override
@@ -99,6 +105,21 @@ public class AdminAddProductActivity extends AppCompatActivity
             }
         });
 
+        if (isEdit) {
+            binding.inputId.setText(String.valueOf(lastId));
+            binding.btnTambah.setText("Edit");
+
+            spinnerGender.setSelection(adapterGender.getPosition(setGender(getIntent().getStringExtra("gender"))));
+            spinnerTipe.setSelection(adapterTipe.getPosition(getIntent().getStringExtra("tipe")));
+            binding.inputName.setText(getIntent().getStringExtra("nama"));
+            binding.inputBrand.setText(getIntent().getStringExtra("brand"));
+            binding.inputHrg.setText(getIntent().getStringExtra("harga"));
+            binding.inputStok.setText(getIntent().getStringExtra("stock"));
+            binding.inputDesc.setText(getIntent().getStringExtra("desc"));
+        } else {
+            binding.inputId.setText(String.valueOf(lastId+1));
+            binding.btnTambah.setText("Tambah");
+        }
 
         binding.btnTambah.setOnClickListener(v -> {
 
@@ -124,9 +145,6 @@ public class AdminAddProductActivity extends AppCompatActivity
             newProduct.setDeskripsi(desc);
             newProduct.setImg(img);
 
-            Log.d("adapterTipe", spinnerTipe.getSelectedItem().toString());
-            Log.d("adapterKategori", spinnerKategori.getSelectedItem().toString());
-            Log.d("adapterGender", gender);
             inputData(newProduct);
         });
 
@@ -137,6 +155,16 @@ public class AdminAddProductActivity extends AppCompatActivity
             return "man";
         } else if (Objects.equals(gender, "wanita")) {
             return "woman";
+        } else {
+            return "unisex";
+        }
+    }
+
+    private String setGender(String gender) {
+        if (Objects.equals(gender, "man")) {
+            return "pria";
+        } else if (Objects.equals(gender, "woman")) {
+            return "wanita";
         } else {
             return "unisex";
         }
@@ -168,8 +196,5 @@ public class AdminAddProductActivity extends AppCompatActivity
         // Another interface callback
     }
 
-    private void isEdit() {
-        //
-    }
 
 }

@@ -15,7 +15,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.hacktiv8.joyshop.databinding.ActivityAdminProductBinding;
 import com.hacktiv8.joyshop.model.Product;
-import com.hacktiv8.joyshop.ui.adapter.ProductAdapter;
+import com.hacktiv8.joyshop.ui.adapter.AdminProductAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class AdminProductActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private RecyclerView rvProduct;
     private List<Product> list = new ArrayList<>();
-    private ProductAdapter productAdapter;
+    private AdminProductAdapter productAdapter;
     private int lastId;
 
     @Override
@@ -49,6 +49,7 @@ public class AdminProductActivity extends AppCompatActivity {
 
         binding.fabAdd.setOnClickListener(v -> {
             Intent intent = new Intent(AdminProductActivity.this, AdminAddProductActivity.class);
+            intent.putExtra(AdminAddProductActivity.INTENT_TYPE, false);
             intent.putExtra(AdminAddProductActivity.EXTRA_ID, lastId);
             startActivity(intent);
         });
@@ -76,7 +77,7 @@ public class AdminProductActivity extends AppCompatActivity {
                         Log.d("AdminProduk", String.valueOf(list.size()));
                         lastId = list.get(list.size()-1).getId();
                         Log.d("AdminProduk", String.valueOf(lastId));
-                        productAdapter = new ProductAdapter(AdminProductActivity.this, list);
+                        productAdapter = new AdminProductAdapter(AdminProductActivity.this, list);
                         productAdapter.notifyDataSetChanged();
                         rvProduct.setAdapter(productAdapter);
                     } else {
