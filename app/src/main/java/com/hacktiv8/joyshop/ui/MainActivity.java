@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.hacktiv8.joyshop.databinding.ActivityMainBinding;
 import com.hacktiv8.joyshop.model.User;
 import com.hacktiv8.joyshop.preferences.UserPreference;
+import com.hacktiv8.joyshop.ui.about.AboutActivity;
 import com.hacktiv8.joyshop.ui.admin.AdminHomeActivity;
 import com.hacktiv8.joyshop.ui.admin.AdminLoginActivity;
 import com.hacktiv8.joyshop.ui.staff.StaffHomeActivity;
@@ -62,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
         binding.btnStaff.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, StaffLoginActivity.class);
+            startActivity(intent);
+        });
+
+        binding.btnAbout.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
         });
     }

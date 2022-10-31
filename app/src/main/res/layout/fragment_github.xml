@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.about.GithubFragment"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="8dp"
+    app:contentPadding="15dp"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="19dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fathimah Khonsa"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:id="@+id/githubKhonsa"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/github"
+                android:layout_marginLeft="100dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="19dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rafi Dany Rasyad"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:id="@+id/githubRafi"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/github"
+                android:layout_marginLeft="100dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="19dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Syaifun Nadhif Maulana"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:id="@+id/githubNadhif"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/github"
+                android:layout_marginLeft="45dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
