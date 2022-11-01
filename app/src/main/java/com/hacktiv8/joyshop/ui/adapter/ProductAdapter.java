@@ -65,7 +65,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             binding.tvStok.setText(product.getStok());
             binding.tvBrand.setText(product.getBrand());
 
-            Picasso.get().load(product.getImg()).resize(1460, 1460).centerCrop().into(binding.ivProduct);
+            Picasso.get().load(product.getImg())
+                    .placeholder((R.drawable.ic_launcher_foreground))
+                    .error(R.drawable.ic_launcher_foreground)
+                    .resize(1460, 1460)
+                    .centerCrop()
+                    .into(binding.ivProduct);
+
             int position = getAdapterPosition();
             itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(context, DetailProductActivity.class);
