@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hacktiv8.joyshop.R;
 import com.hacktiv8.joyshop.databinding.ActivityStaffHomeBinding;
+import com.hacktiv8.joyshop.databinding.ItemEmailBinding;
+import com.hacktiv8.joyshop.databinding.ItemPhoneBinding;
 import com.hacktiv8.joyshop.preferences.UserPreference;
 import com.hacktiv8.joyshop.ui.MainActivity;
 
@@ -26,15 +29,20 @@ public class StaffHomeActivity extends AppCompatActivity {
         binding = ActivityStaffHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         preference = new UserPreference(this);
+
         if (user != null) {
             isLogin = true;
-            binding.usernameStaff.setText("Hello, " + preference.getUserPref().getUsername());
+            binding.usernameStaff.setText(preference.getUserPref().getUsername());
+            binding.itemPhone.phoneStaff.setText(preference.getUserPref().getPhone());
+            binding.itemEmail.emailStaff.setText(preference.getUserPref().getEmail());
         } else {
             isLogin = false;
             finish();
         }
+
     }
 
     @Override

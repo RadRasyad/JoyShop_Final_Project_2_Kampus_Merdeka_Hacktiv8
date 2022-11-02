@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/drawable/bg_header.xml" value="0.109" />
+        <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/drawable/btn_background.xml" value="0.131" />
+        <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/drawable/card_button.xml" value="0.131" />
+        <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/drawable/ic_navigate.xml" value="0.1315" />
         <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/activity_about.xml" value="0.22" />
         <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/activity_admin_home.xml" value="0.1322463768115942" />
         <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/activity_admin_login.xml" value="0.125" />
@@ -12,6 +16,8 @@
         <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/fragment_email.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/fragment_github.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/fragment_instagram.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/item_email.xml" value="0.1634963768115942" />
+        <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/layout/item_phone.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/menu/admin_menu.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/menu/staff_menu.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/khonsa/AndroidStudioProjects/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
