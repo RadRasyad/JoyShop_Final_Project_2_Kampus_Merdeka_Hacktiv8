@@ -61,30 +61,33 @@ public class StaffLoginActivity extends AppCompatActivity {
                     boolean isExist = snapshot.exists();
                     if (isExist){
                         User user = snapshot.getValue(User.class);
-                        if (user.getRole().equals("1")){
-                            mAuth.signInWithEmailAndPassword(user.getEmail(), password)
-                                    .addOnCompleteListener(StaffLoginActivity.this, new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if (task.isSuccessful()){
-                                                User toSave = new User();
-                                                toSave.setuId(user.getuId());
-                                                toSave.setUsername(user.getUsername());
-                                                toSave.setEmail(user.getEmail());
-                                                toSave.setPhone(user.getPhone());
-                                                toSave.setRole(user.getRole());
-                                                saveUser(toSave);
-                                                reload();
-                                            } else {
-                                                Log.w("StaffLoginActivity", "signInWithEmail:failure", task.getException());
-                                                Toast.makeText(StaffLoginActivity.this, "Password salah", Toast.LENGTH_SHORT).show();
+                        if (user!=null) {
+                            if (user.getRole().equals("1")){
+                                mAuth.signInWithEmailAndPassword(user.getEmail(), password)
+                                        .addOnCompleteListener(StaffLoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                if (task.isSuccessful()){
+                                                    User toSave = new User();
+                                                    toSave.setuId(user.getuId());
+                                                    toSave.setUsername(user.getUsername());
+                                                    toSave.setEmail(user.getEmail());
+                                                    toSave.setPhone(user.getPhone());
+                                                    toSave.setRole(user.getRole());
+                                                    saveUser(toSave);
+                                                    reload();
+                                                } else {
+                                                    Log.w("StaffLoginActivity", "signInWithEmail:failure", task.getException());
+                                                    Toast.makeText(StaffLoginActivity.this, "Password salah", Toast.LENGTH_SHORT).show();
+                                                }
                                             }
-                                        }
-                                    });
-                        } else {
-                            Toast.makeText(StaffLoginActivity.this, "Anda bukan staff", Toast.LENGTH_SHORT).show();
+                                        });
+                            } else {
+                                Toast.makeText(StaffLoginActivity.this, "Anda bukan staff", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }else {
+
+                    } else {
                         Toast.makeText(StaffLoginActivity.this, "Akun tidak ditemukan", Toast.LENGTH_SHORT).show();
                     }
                 }

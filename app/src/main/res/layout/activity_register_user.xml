@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.user.RegisterUserActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:text="@string/register"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/usernameLayout"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/usernameLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
