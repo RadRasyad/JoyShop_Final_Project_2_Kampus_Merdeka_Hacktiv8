@@ -1,6 +1,9 @@
 # JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8
 E-Commerce App
 
+Sample Download Here
+
+[![GithubUser](https://img.shields.io/badge/JoyShop-APK-black.svg?style=for-the-badge&logo=android)](https://github.com/RadRasyad/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/raw/master/app/release/app-release.apk)
 
 ## Demo Account
 1. Admin
