@@ -14,3 +14,9 @@ E-Commerce App
  2. User/(u can register in the app)
     - Username : testUser
     - Pass     : 12345678
+
+## Preview
+<img src="https://github.com/RadRasyad/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/blob/master/ss/main_user_login.png" width="240"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/RadRasyad/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/blob/master/ss/user_home.png" width="240"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<img src="https://github.com/RadRasyad/JoyShop_Final_Project_2_Kampus_Merdeka_Hacktiv8/blob/master/ss/user_detail_product.png" width="240"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
