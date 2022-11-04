@@ -12,4 +12,6 @@
     <color name="secondaryDarkColor">#005abb</color>
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#000000</color>
+
+    <color name="placeholder">#d7d7d7</color>
 </resources>

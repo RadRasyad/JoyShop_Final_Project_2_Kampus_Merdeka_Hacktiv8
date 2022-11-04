@@ -36,8 +36,8 @@ public class DetailProductActivity extends AppCompatActivity {
         builder.build().load(img)
                 .resize(1460, 1460)
                 .centerCrop()
-                .placeholder((R.drawable.ic_launcher_foreground))
-                .error(R.drawable.ic_launcher_foreground)
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
                 .into(binding.imgView);
 
         // calling the action bar

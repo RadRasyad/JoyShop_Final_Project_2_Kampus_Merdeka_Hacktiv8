@@ -66,8 +66,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             binding.tvBrand.setText(product.getBrand());
 
             Picasso.get().load(product.getImg())
-                    .placeholder((R.drawable.ic_launcher_foreground))
-                    .error(R.drawable.ic_launcher_foreground)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder)
                     .resize(1460, 1460)
                     .centerCrop()
                     .into(binding.ivProduct);
